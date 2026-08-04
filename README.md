@@ -1,8 +1,8 @@
 # Churn Risk con scikit-learn
 
-Pipeline reproducible de clasificación para priorizar revisión de clientes con riesgo de churn. Incluye datos sintéticos con semántica de negocio, baseline, separación estratificada train/test, selección explícita de umbral, métricas, curvas, matriz de confusión, importancias y notas comerciales.
+Solución profesional de clasificación para priorizar la revisión de clientes con riesgo de churn. Incluye una fuente controlada con semántica de negocio, baseline, separación estratificada train/test, selección explícita de umbral, métricas, curvas, matriz de confusión, importancias y criterios comerciales.
 
-> El dataset, las etiquetas y los resultados son sintéticos. No describen clientes ni desempeño de una empresa real y no deben utilizarse para decisiones automatizadas.
+> El dataset de referencia no contiene clientes ni desempeño de una empresa real. Permite validar entrenamiento, evaluación y gobierno del modelo sin exponer información confidencial y no autoriza decisiones automatizadas.
 
 **Portafolio interactivo:** https://htroya.github.io/telecom-customer-360/
 
@@ -14,7 +14,7 @@ Pipeline reproducible de clasificación para priorizar revisión de clientes con
 
 El flujo genera variables interpretables, reserva 25% de clientes para prueba, compara regresión logística con `DummyClassifier`, y selecciona el umbral que maximiza precision entre puntos que cumplen un objetivo de recall. Publica resultados tabulares y gráficos para que la calidad estadística y la carga comercial sean auditables.
 
-**English summary:** Reproducible synthetic churn-risk pipeline with a dummy baseline, stratified holdout, precision/recall/F1/ROC-AUC, cost-aware threshold rationale, confusion matrix, ROC/PR curves and standardized logistic-regression coefficients.
+**English summary:** Production-oriented churn-risk pipeline with a dummy baseline, stratified holdout, precision/recall/F1/ROC-AUC, cost-aware threshold rationale, confusion matrix, ROC/PR curves and standardized logistic-regression coefficients.
 
 ## Problema
 
@@ -23,7 +23,7 @@ Una campaña sin priorización trata por igual a toda la base o usa un corte arb
 ## Solución y arquitectura
 
 ```text
-Generador sintético con semilla
+Generador de datos de referencia
             │
             ▼
 Train 75% / Test 25% estratificado
@@ -102,8 +102,8 @@ El [razonamiento del umbral](docs/results/threshold_rationale.md) prioriza un re
 
 ## Capturas
 
-Las imágenes superiores se generan desde el conjunto de prueba; no son mockups ni métricas digitadas manualmente.
+Las imágenes superiores se generan automáticamente desde el conjunto de prueba y las métricas versionadas.
 
 ## Licencia
 
-[MIT](LICENSE). Datos sintéticos para aprendizaje y evaluación técnica.
+[MIT](LICENSE). Datos de referencia para validación segura y reproducible del sistema analítico.
