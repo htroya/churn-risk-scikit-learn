@@ -4,6 +4,8 @@ Pipeline reproducible de clasificación para priorizar revisión de clientes con
 
 > El dataset, las etiquetas y los resultados son sintéticos. No describen clientes ni desempeño de una empresa real y no deben utilizarse para decisiones automatizadas.
 
+**Portafolio interactivo:** https://htroya.github.io/telecom-customer-360/
+
 | Curva ROC | Matriz de confusión |
 |---|---|
 | ![Curva ROC](docs/results/roc_curve.svg) | ![Matriz de confusión](docs/results/confusion_matrix.svg) |
