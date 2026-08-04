@@ -1,6 +1,6 @@
 # Churn Risk con scikit-learn
 
-Solución profesional de clasificación para priorizar la revisión de clientes con riesgo de churn. Incluye una fuente controlada con semántica de negocio, baseline, separación estratificada train/test, selección explícita de umbral, métricas, curvas, matriz de confusión, importancias y criterios comerciales.
+Sistema de clasificación para priorizar la revisión de clientes con riesgo de abandono. Incluye fuente controlada, línea base, validación temporal progresiva, comparación de modelos, calibración, selección de umbral por capacidad y valor esperado, métricas por segmento, deriva y registro de versión.
 
 > El dataset de referencia no contiene clientes ni desempeño de una empresa real. Permite validar entrenamiento, evaluación y gobierno del modelo sin exponer información confidencial y no autoriza decisiones automatizadas.
 
@@ -14,7 +14,7 @@ Solución profesional de clasificación para priorizar la revisión de clientes 
 
 El flujo genera variables interpretables, reserva 25% de clientes para prueba, compara regresión logística con `DummyClassifier`, y selecciona el umbral que maximiza precision entre puntos que cumplen un objetivo de recall. Publica resultados tabulares y gráficos para que la calidad estadística y la carga comercial sean auditables.
 
-**English summary:** Production-oriented churn-risk pipeline with a dummy baseline, stratified holdout, precision/recall/F1/ROC-AUC, cost-aware threshold rationale, confusion matrix, ROC/PR curves and standardized logistic-regression coefficients.
+**English summary:** Churn-risk system with temporal validation, champion/challenger comparison, calibration metrics, capacity-aware thresholding, segment diagnostics, drift monitoring, model registry metadata and reproducible evaluation artifacts.
 
 ## Problema
 
@@ -86,19 +86,34 @@ El [razonamiento del umbral](docs/results/threshold_rationale.md) prioriza un re
 - Umbral separado del entrenamiento para hacer explícito el intercambio precision/recall.
 - Datos, curvas y predicciones exportados para revisión independiente.
 
-## Limitaciones
+## Gobierno, calibración y monitoreo
 
-- Las etiquetas nacen de una fórmula sintética conocida; el desempeño será más estable que en datos reales.
-- La selección de umbral usa el mismo holdout reportado; producción requeriría validación separada o cross-validation.
-- No hay calibración, deriva, equidad por grupo, explicaciones locales ni experimento de uplift.
-- No se incluyen costos reales, aceptación de ofertas ni resultados de retención.
+`src/model_governance.py` separa la calidad estadística de la decisión operativa. Calcula ROC-AUC, Brier y error esperado de calibración para el modelo vigente y el candidato. El umbral respeta la capacidad máxima de contacto y maximiza el valor esperado según costo de contacto y valor retenido.
+
+El mismo flujo incorpora:
+
+- validación temporal progresiva sin mezclar observaciones futuras en entrenamiento;
+- PSI para cambios en la distribución de puntuaciones;
+- precision, recall, selección y Brier por segmento;
+- brecha de recall entre segmentos para orientar revisión;
+- comparación vigente/candidato con criterio explícito;
+- manifiesto de versión, propietario de decisión, huella SHA-256 y prohibición de acción automática.
+
+El [diagrama de gobierno](docs/governance_architecture.md) muestra el ciclo de revisión y recalibración. `governance_report.json`, `model_manifest.json` y `segment_performance.csv` dejan evidencia consultable.
+
+## Límites de alcance
+
+- Las etiquetas nacen de una fórmula controlada; la estabilidad será mayor que con fuentes operativas.
+- Las métricas de grupo describen diferencias y no determinan por sí solas una política de equidad.
+- No se incluyen explicaciones locales, inferencia causal ni experimento de uplift.
+- Costos, aceptación de ofertas y resultados de retención deben obtenerse del proceso comercial.
 
 ## Próximos pasos
 
-1. Definir evento, horizonte y ventana de observación con negocio.
-2. Añadir cross-validation, calibración y validación temporal *out-of-time*.
-3. Evaluar deriva, equidad, costo esperado y capacidad de campaña.
-4. Registrar versión de datos/modelo y monitorear desempeño posterior al despliegue.
+1. Definir evento, horizonte y ventana de observación con responsables comerciales.
+2. Conectar resultados de contacto y retención para estimar valor incremental.
+3. Añadir explicaciones locales y análisis causal de ofertas.
+4. Automatizar alertas, aprobación de promoción de modelos y seguimiento posterior.
 
 ## Capturas
 
