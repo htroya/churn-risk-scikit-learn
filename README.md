@@ -6,7 +6,7 @@ Pipeline reproducible de clasificación para priorizar revisión de clientes con
 
 | Curva ROC | Matriz de confusión |
 |---|---|
-| ![Curva ROC](docs/results/roc_curve.png) | ![Matriz de confusión](docs/results/confusion_matrix.png) |
+| ![Curva ROC](docs/results/roc_curve.svg) | ![Matriz de confusión](docs/results/confusion_matrix.svg) |
 
 ## Resumen ejecutivo
 
@@ -74,7 +74,7 @@ El [razonamiento del umbral](docs/results/threshold_rationale.md) prioriza un re
 
 ## Importancia de variables
 
-`feature_importance.csv` y `feature_importance.png` muestran coeficientes estandarizados. Son asociaciones dentro de un proceso sintético, no causalidad. El color/dirección indica si la variable incrementa o reduce los *log-odds* estimados.
+`feature_importance.csv` y `feature_importance.svg` muestran coeficientes estandarizados. Son asociaciones dentro de un proceso sintético, no causalidad. El color/dirección indica si la variable incrementa o reduce los *log-odds* estimados.
 
 ## Decisiones técnicas
 
