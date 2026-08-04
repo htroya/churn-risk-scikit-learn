@@ -126,7 +126,7 @@ def _write_plots(
     display.plot(cmap="Blues", colorbar=False)
     display.ax_.set_title("Matriz de confusión · datos sintéticos")
     display.figure_.tight_layout()
-    display.figure_.savefig(output / "confusion_matrix.png", dpi=160)
+    display.figure_.savefig(output / "confusion_matrix.svg", format="svg")
     plt.close(display.figure_)
 
     fpr, tpr, _ = roc_curve(y_test, probability)
@@ -136,7 +136,7 @@ def _write_plots(
     axis.set(xlabel="False positive rate", ylabel="True positive rate", title="Curva ROC")
     axis.legend()
     figure.tight_layout()
-    figure.savefig(output / "roc_curve.png", dpi=160)
+    figure.savefig(output / "roc_curve.svg", format="svg")
     plt.close(figure)
 
     precision, recall, _ = precision_recall_curve(y_test, probability)
@@ -144,7 +144,7 @@ def _write_plots(
     axis.plot(recall, precision, color="#7C3AED")
     axis.set(xlabel="Recall", ylabel="Precision", title="Curva precision–recall")
     figure.tight_layout()
-    figure.savefig(output / "precision_recall_curve.png", dpi=160)
+    figure.savefig(output / "precision_recall_curve.svg", format="svg")
     plt.close(figure)
 
     order = np.argsort(np.abs(coefficients))
@@ -154,7 +154,7 @@ def _write_plots(
     axis.axvline(0, color="#6B7280", linewidth=1)
     axis.set(title="Coeficientes estandarizados", xlabel="Efecto sobre log-odds de churn")
     figure.tight_layout()
-    figure.savefig(output / "feature_importance.png", dpi=160)
+    figure.savefig(output / "feature_importance.svg", format="svg")
     plt.close(figure)
 
 
