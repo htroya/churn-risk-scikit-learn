@@ -40,7 +40,7 @@ FEATURES = [
 
 
 def build_dataset(rows: int = 4_000, seed: int = 42) -> pl.DataFrame:
-    """Generate domain-shaped synthetic customers with reproducible churn labels."""
+    """Generate domain-shaped synthetic customers with deterministic churn labels."""
     if rows < 100:
         raise ValueError("rows debe ser al menos 100")
     rng = np.random.default_rng(seed)
@@ -296,7 +296,7 @@ def train(
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Modelo reproducible de riesgo de churn")
+    parser = argparse.ArgumentParser(description="Evaluación del riesgo de abandono")
     parser.add_argument("--output", type=Path, default=Path("artifacts"))
     parser.add_argument("--rows", type=int, default=4_000)
     parser.add_argument("--seed", type=int, default=42)

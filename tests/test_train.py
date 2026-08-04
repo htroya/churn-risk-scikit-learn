@@ -7,7 +7,7 @@ import pytest
 from src.train import build_dataset, select_threshold, train
 
 
-def test_dataset_is_domain_shaped_and_reproducible() -> None:
+def test_dataset_is_domain_shaped_and_deterministic() -> None:
     first = build_dataset(rows=500, seed=7)
     second = build_dataset(rows=500, seed=7)
     assert first.equals(second)

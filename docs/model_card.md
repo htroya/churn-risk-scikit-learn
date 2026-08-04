@@ -2,7 +2,7 @@
 
 ## Uso previsto
 
-Evaluar de forma reproducible y priorizar transparentemente una lista para revisión humana. No está validado para producción ni decisiones automáticas.
+Evaluar con criterios verificables y priorizar transparentemente una lista para revisión humana. No está validado para decisiones automáticas.
 
 ## Entrenamiento
 
