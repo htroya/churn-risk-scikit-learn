@@ -1,0 +1,7 @@
+feature,coefficient,direction,importance
+support_tickets,0.5691466329263911,increases_risk,0.5691466329263911
+tenure_months,-0.5360771716467192,decreases_risk,0.5360771716467192
+late_payments,0.5158036740671411,increases_risk,0.5158036740671411
+monthly_charge,0.4061126391442687,increases_risk,0.4061126391442687
+contract_score,-0.39311227650942104,decreases_risk,0.39311227650942104
+service_usage,-0.21222294208290202,decreases_risk,0.21222294208290202
